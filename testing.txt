@@ -1,0 +1,26 @@
+Test 1: decode when input gives start + chunk size that exceeds line length, check that part of output then error is printed
+./decode darwish.txt testing/invalid_code.txt
+Expected output is "edError: Invalid chunk size."
+invalid_code.txt contains "0 8 4"
+
+Test 2: decode when text file has a special characters 
+./decode limon.txt testing/special_code.txt
+Expected output is " the crashes:\ncan't help it, way men love."
+special_code.txt contains "4 40 14 \n 9 2 14 \n 10 10 14"
+
+Test 3: decode a straightforward message with valid indices 
+./decode siken.txt testing/valid.txt
+Expected output is "has is"
+valid.txt contains "0 9 4 \n 1 5 2"
+
+Test 4: encode a straightforward message with valid indices 
+./encode 5 darwish.txt "asked over life"
+Expected output is "0 6 5\n3 14 5\n4 35 5"
+
+Test 5: encode when the text file has a special character 
+./decode 3 limon.txt "can't love"
+Expected output is "9 2 5\n10 19 5"
+
+Test 6: encode when chunks on same line can be used but should not be
+./encode 5 siken.txt "old story."
+Expected output is "1 15 5 \n 2 35 3"
